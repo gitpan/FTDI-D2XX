@@ -1,10 +1,11 @@
-FTDI::D2XX version 0.01
-=====================
+FTDI::D2XX version 0.02 (pre-alpha)
+===================================
 
-Interface module to FTDI D2XX library. So far only tested with linux (debian). The
-implementation bases on XS and should be portable to Windows as well.
+Interface module to FTDI D2XX library. 
+So far only tested with linux (debian). The
+implementation bases on XS and should be 
+portable to Windows as well.
 
-Current version: 0.01 (pre-alpha)
 
 INSTALLATION
 

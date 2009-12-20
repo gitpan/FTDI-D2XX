@@ -132,7 +132,7 @@ our @EXPORT_OK = qw(
   CBUS_BITBANG_RD 
 );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 require XSLoader;
 XSLoader::load('FTDI::D2XX', $VERSION);
@@ -297,7 +297,6 @@ sub DESTROY
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
 
@@ -312,7 +311,7 @@ FTDI::D2XX - Perl extension for interface to FTDI d2xx library (tested with vers
 	print "Write error";
   }
 
-  # not needed due to destrucor: $FTD->FT_Close();
+  # not needed due to destructor: $FTD->FT_Close();
 
   OR
 
@@ -447,7 +446,9 @@ The following list describes only the differences to the original implementation
 =item C<New>
 
 Parameters: deviceID [mode]
+
 Returns: Object Reference of the Object FTDI::D2XX
+
 Purpose: Open a FTDI device and return the handle as a object reference. This function behaves like FT_Open with one parameter and like FT_OpenEx with two parameters.
 
 =item C<FT_SetVIDPID>
@@ -700,7 +701,7 @@ The list of functions showns only the difference to the FTDI D2XX Programmer's G
 
 =head1 AUTHOR
 
-Matthias Voelker, E<lt>m.matze@gmx.deE<gt>
+Matthias Voelker, E<lt>mvoelker@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
