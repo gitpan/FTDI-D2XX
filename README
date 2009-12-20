@@ -1,0 +1,36 @@
+FTDI::D2XX version 0.01
+=====================
+
+Interface module to FTDI D2XX library. So far only tested with linux (debian). The
+implementation bases on XS and should be portable to Windows as well.
+
+Current version: 0.01 (pre-alpha)
+
+INSTALLATION
+
+To install this module type the following:
+
+   download D2XX driver from www.ftdichip.com
+   install the driver (ftd2xx.h has to be in /usr/include or /usr/local/include)
+   perl Makefile.PL
+   make
+   # make test - no test so far
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+
+  D2XX driver from FTDI (only tested on linux with library version 0.4.16
+
+COPYRIGHT AND LICENCE
+
+Put the correct copyright and licence information here.
+
+Copyright (C) 2009 by Matthias Voelker
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.8.8 or,
+at your option, any later version of Perl 5 you may have available.
+
+

@@ -1,0 +1,9 @@
+Changes
+D2XX.xs
+Makefile.PL
+MANIFEST
+ppport.h
+README
+t/FTDI-D2XX.t
+lib/FTDI/D2XX.pm
+META.yml                                 Module meta-data (added by MakeMaker)
