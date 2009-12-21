@@ -4,14 +4,24 @@
 
 #include "ppport.h"
 
-// project includes
-#include <ftd2xx.h>
- // #include "p5ftd2xx.h"
 
-// system includes
+#ifdef WIN32
+
+// windows includes
+#include "ftd2xx.h"
+#include <windows.h>
+
+#else
+
+//linux includes
+#include <ftd2xx.h>
 #include "WinTypes.h"
-#include <stdlib.h>
 #include <strings.h>
+
+#endif
+
+#include <stdlib.h>
+
 
 // #define DEBUG 1
 
@@ -135,6 +145,10 @@ FT_STATUS FT_GetLibraryVersion( dwVersion )
 		dwVersion
 
 
+## These functions are not defined in the Windows header file from driver Version
+## 2.06.00
+
+#ifndef WIN32
 
 FT_STATUS
 FT_SetVIDPID( dwVID, dwPID)
@@ -153,15 +167,18 @@ FT_GetVIDPID( dwVID, dwPID)
 		dwPID
 		RETVAL
 
+#endif
+
+
 FT_STATUS
 FT_Read( pHandle, Buffer, nBufferSize, lpBytesReturned)
     FT_HANDLE * pHandle
-    SV * Buffer = NO_INIT;
-    DWORD nBufferSize;
-    DWORD lpBytesReturned = NO_INIT;
-	INIT:
-		char *lpBuffer;
-		AV * array;
+    SV * Buffer = NO_INIT
+    DWORD nBufferSize
+    DWORD lpBytesReturned = NO_INIT
+	PREINIT:
+		char* lpBuffer;
+		AV* array;
 		DWORD i;
 	CODE:
 		// get mem
@@ -192,14 +209,14 @@ FT_Write( ftHandle, Buffer, nBufferSize, BytesWritten)
     	SV * Buffer
     	DWORD nBufferSize
     	DWORD BytesWritten = NO_INIT
-    	INIT:
+    	PREINIT:
 		AV * arrayBuffer;
 		char * lpBuffer;
 		DWORD i;
-		
+	CODE:	
 		if( (!SvROK(Buffer)) 
 			|| (SvTYPE(SvRV(Buffer)) != SVt_PVAV) 
-			|| !(av_len((AV *)SvRV(Buffer)) < nBufferSize)) 
+			|| !((DWORD)av_len((AV *)SvRV(Buffer)) < nBufferSize)) 
 		{
 			printf("Data type error\n");
 			printf("!SvROK(Buffer): %d\n",!SvROK(Buffer));
@@ -208,7 +225,7 @@ FT_Write( ftHandle, Buffer, nBufferSize, BytesWritten)
 			
 			XSRETURN_UNDEF;
 		}
-	CODE:
+	
 		// copy from array (reference) to buffer
 		lpBuffer = malloc(nBufferSize);
 		arrayBuffer = (AV *)SvRV(Buffer);
@@ -359,19 +376,19 @@ FT_STATUS FT_EraseEE(FT_HANDLE ftHandle	);
 FT_STATUS FT_EE_ProgramByArray( ftHandle, Data) 
 	FT_HANDLE ftHandle
 	SV * Data
-	INIT:
+	PREINIT:
 		// Data is a reference of a array
 		AV * arrayBuffer;
 		char * pData;
 		DWORD i;
-		
+	CODE:	
 		if( (!SvROK(Data)) || 
 			(SvTYPE(SvRV(Data)) != SVt_PVAV) || 
 			(av_len((AV *)SvRV(Data)) < 0)) 
 		{
 			XSRETURN_UNDEF;
 		}
-	CODE:
+	
 		// copy from array (reference) to buffer
 		pData = malloc(sizeof(FT_PROGRAM_DATA));
 		arrayBuffer = (AV *)SvRV(Data);
@@ -392,7 +409,7 @@ FT_STATUS FT_EE_ProgramByArray( ftHandle, Data)
 FT_STATUS FT_EE_ReadToArray( ftHandle, Data)
     	FT_HANDLE ftHandle
 	SV * Data = NO_INIT
-	INIT:
+	PREINIT:
 		char *lpBuffer;
 		AV * array;
 		DWORD i;
@@ -432,12 +449,12 @@ FT_STATUS  FT_EE_UAWrite( ftHandle, Data, dwDataLen)
     	FT_HANDLE ftHandle
 	SV * Data
 	WORD dwDataLen
-	INIT:
+	PREINIT:
 		// Data is a reference of a array
 		AV * arrayBuffer;
 		PUCHAR pData;
 		DWORD i;
-		
+	CODE:	
 		if( (!SvROK(Data)) || 
 			(SvTYPE(SvRV(Data)) != SVt_PVAV) || 
 			(av_len((AV *)SvRV(Data)) < 0)) 
@@ -445,7 +462,6 @@ FT_STATUS  FT_EE_UAWrite( ftHandle, Data, dwDataLen)
 			XSRETURN_UNDEF;
 		}
 
-	CODE:
 		// copy from array (reference) to buffer
 		pData = malloc(dwDataLen);
 		arrayBuffer = (AV *)SvRV(Data);
@@ -463,7 +479,7 @@ FT_STATUS  FT_EE_UARead( ftHandle, Buffer, nBufferSize, lpBytesReturned)
 	SV * Buffer = NO_INIT
 	DWORD nBufferSize
 	DWORD lpBytesReturned = NO_INIT
-	INIT:
+	PREINIT:
 		PUCHAR lpBuffer;
 		AV * array;
 		DWORD i;
@@ -533,7 +549,7 @@ FT_STATUS  FT_GetDeviceInfo( ftHandle, ftDevice, dwID, SerialNumber, Description
 	DWORD dwID = NO_INIT
 	char * SerialNumber = NO_INIT
 	char * Description = NO_INIT
-	SV * Dummy = NO_INIT
+	SV * Dummy
     	CODE:
 		SerialNumber = malloc(16); // from Databook
 		Description = malloc(64);  // from Databook

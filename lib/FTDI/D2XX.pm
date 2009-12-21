@@ -132,7 +132,7 @@ our @EXPORT_OK = qw(
   CBUS_BITBANG_RD 
 );
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 require XSLoader;
 XSLoader::load('FTDI::D2XX', $VERSION);
@@ -300,7 +300,7 @@ __END__
 
 =head1 NAME
 
-FTDI::D2XX - Perl extension for interface to FTDI d2xx library (tested with version 0.4.16 linux) 
+FTDI::D2XX - Perl extension for interface to FTDI d2xx library (tested with version 0.4.16 linux, see readme for windows)
 
 
 =head1 SYNOPSIS
@@ -678,7 +678,7 @@ Parameters: Reference, Scalar, Scalar
 
 =head1 DEPENDENCIES
 
-The FTDI/FTD2XX Drivers, at least CDM 2.04.16 (only tested with this version under linux), must be installed in conjunction
+The FTDI/FTD2XX Drivers, at least CDM 2.04.16 (tested with this version under linux, see readme for windows), must be installed in conjunction
 with this module for it to be functional. This package does not contain the ftd2xx.h header file. Please download it from www.ftdichip.com
 
 =head1 BUGS and THINGS TO DO
@@ -693,9 +693,6 @@ B<Things to Do>
 
 2) Complete the functions list
 
-3) Find some one to port it to windows (should be simple) - I'm looking for someone
-to do this. A small test with nmake, Visual C++ and ActivePerl failed but should run with small
-modifications.
 
 =head1 SEE ALSO
 
