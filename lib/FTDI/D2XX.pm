@@ -132,7 +132,7 @@ our @EXPORT_OK = qw(
   CBUS_BITBANG_RD 
 );
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 require XSLoader;
 XSLoader::load('FTDI::D2XX', $VERSION);
@@ -342,7 +342,9 @@ This is a pre-alpha version. Only small tests have been done by using a test scr
 
 =head2 EXPORT
 
-FT_OK is the only default export. Other exportable symbols are:   
+FT_OK is the only default export. 
+
+Other exportable symbols are:   
 C<FT_INVALID_HANDLE
   FT_DEVICE_NOT_FOUND
   FT_DEVICE_NOT_OPENED

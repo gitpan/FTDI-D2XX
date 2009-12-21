@@ -6,6 +6,8 @@ ppport.h
 README
 t/FTDI-D2XX.t
 lib/FTDI/D2XX.pm
+lib/FTDI.pm
 WinTypes.h
+typemap
 SmallTest.pl
 META.yml                                 Module meta-data (added by MakeMaker)
