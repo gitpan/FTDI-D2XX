@@ -1,4 +1,4 @@
-FTDI::D2XX version 0.04 (pre-alpha)
+FTDI::D2XX version 0.05 (alpha)
 ===================================
 
 Interface module to FTDI D2XX library. 

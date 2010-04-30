@@ -1,5 +1,12 @@
 Revision history for Perl extension FTDId2xx.
 
+0.05  May 01 2010
+	- Typo in constant for bit mode selection corrected
+	- Documentation extended
+
+0.04  Dec 21 2009
+	- Get it running on windows with ActivePerl, nmake, Visual C++
+
 0.03  Dec 21 2009
 	- FTDI.pm (docu only) file added
 	- Simple tests added

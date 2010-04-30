@@ -132,7 +132,7 @@ our @EXPORT_OK = qw(
   CBUS_BITBANG_RD 
 );
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 require XSLoader;
 XSLoader::load('FTDI::D2XX', $VERSION);
@@ -229,14 +229,14 @@ use constant FT_DEVICE_2232H => 6;
 use constant FT_DEVICE_4232H => 7;
 
 # modes
-use constant FT_BITMODE_RESET => 0;
-use constant FT_BITMODE_ASYNC => 1;
-use constant FT_BITMODE_MPSSE => 2;
-use constant FT_BITMODE_SYNC => 4;
-use constant FT_BITMODE_MCUHOST => 8;
+use constant FT_BITMODE_RESET => 0x00;
+use constant FT_BITMODE_ASYNC => 0x01;
+use constant FT_BITMODE_MPSSE => 0x02;
+use constant FT_BITMODE_SYNC => 0x04;
+use constant FT_BITMODE_MCUHOST => 0x08;
 use constant FT_BITMODE_FASTOPTO => 0x10;
 use constant FT_BITMODE_CBUS => 0x20;
-use constant FT_BITMODE_SINGLE245 => 040;
+use constant FT_BITMODE_SINGLE245 => 0x40;
 
 # CBUS options
 use constant CBUS_TXDEN =>  0x00 ;
@@ -443,7 +443,7 @@ C<FT_INVALID_HANDLE
 The module provides a new constructor which connects a ftdi handle with the module by using bless.
 Therefore all FT_functions can be called as a method if a handle is the first parameter.
 
-The following list describes only the differences to the original implementation by FTDI. All functions, except new() returns the status of the operation. Parameters marked by * will be changed by the function.
+The following list describes only the differences to the original implementation by FTDI. All functions, except new() returns the status of the operation. Parameters marked by * will be changed by the function. Mosts of the * marked parameter are only feedback from the library. These scalars are not initialized by the xs code - result: $device->FT_GetBitMode($mode) works but not $device->FT_GetBitMode(\$mode) because the library generates a new variable instead of using the existing one.
 
 =item C<New>
 
