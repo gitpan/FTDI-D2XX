@@ -132,7 +132,7 @@ our @EXPORT_OK = qw(
   CBUS_BITBANG_RD 
 );
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 require XSLoader;
 XSLoader::load('FTDI::D2XX', $VERSION);

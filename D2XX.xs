@@ -231,9 +231,9 @@ FT_Write( ftHandle, Buffer, nBufferSize, BytesWritten)
 		arrayBuffer = (AV *)SvRV(Buffer);
 		for(i=0; i<nBufferSize;i++) {
 			lpBuffer[i] = (char)SvUV(*av_fetch(arrayBuffer,i,0));
-			#ifdef DEBUG
-			printf("FT_Write buffer [%i] = %X\n", i, lpBuffer[i]);
-			#endif
+//			#ifdef DEBUG
+//			printf("FT_Write buffer [%i] = %X\n", i, lpBuffer[i]);
+//			#endif
 		}
 		RETVAL = FT_Write( ftHandle, lpBuffer, nBufferSize, &BytesWritten);
 		free(lpBuffer);

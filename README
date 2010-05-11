@@ -1,4 +1,4 @@
-FTDI::D2XX version 0.05 (alpha)
+FTDI::D2XX version 0.06 (alpha)
 ===================================
 
 Interface module to FTDI D2XX library. 
@@ -20,6 +20,9 @@ To install this module type the following:
    make test 
    make install
 
+It is also possible to install it directly via 'cpan' if the library and the
+header files are in the search path.
+
 DEPENDENCIES
 
 This module requires these other modules and libraries:
@@ -31,7 +34,7 @@ COPYRIGHT AND LICENCE
 
 Put the correct copyright and licence information here.
 
-Copyright (C) 2009 by Matthias Voelker
+Copyright (C) 2010 by Matthias Voelker
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.8 or,

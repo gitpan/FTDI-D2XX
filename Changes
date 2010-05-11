@@ -1,5 +1,8 @@
 Revision history for Perl extension FTDId2xx.
 
+0.06  May 10 2010
+	- Debug message of FT_Write removed
+
 0.05  May 01 2010
 	- Typo in constant for bit mode selection corrected
 	- Documentation extended
